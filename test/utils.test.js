@@ -1,6 +1,7 @@
 // IMPORT MODULES under test here:
-import { createThundercat, findById, } from '../utils.js';
+import { createThundercat, findById, calcItemTotal } from '../utils.js';
 import { cart } from '../data/cart-data.js';
+import { thundercat } from '../product.js';
 
 const test = QUnit.test;
 
@@ -31,7 +32,14 @@ test('take an array and check to see if the item.id matches', (expect) => {
     const expected = cart[0];
 
     const actual = findById(cart, cart[0].id);
-    console.log(cart[0].id);
 
     expect.deepEqual(actual, expected);
+});
+
+test('take a quantity and cost and create a total', (expect) => {
+    const expected = 100;
+
+    const actual = calcItemTotal(cart[0].quantity, thundercat[0].cost);
+
+    expect.equal(actual, expected);
 });

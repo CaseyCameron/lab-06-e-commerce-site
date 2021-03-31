@@ -5,8 +5,8 @@ export function findById(array, id){
 }
 
 export function calcItemTotal(quantity, amount){
-    
-    return Math.round();
+    Math.round(amount * 100) / 100;
+    return quantity * amount;
 }
 
 export function createThundercat(thundercat){
