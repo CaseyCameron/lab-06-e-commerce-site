@@ -1,3 +1,14 @@
+export function findById(array, id){
+    for (let arrayItem of array){
+        if (arrayItem.id === id) return arrayItem;
+    }
+}
+
+export function calcItemTotal(quantity, amount){
+    
+    return Math.round();
+}
+
 export function createThundercat(thundercat){
     const li = document.createElement('li');
     li.classList.add('thundercat');
@@ -34,3 +45,4 @@ export function createThundercat(thundercat){
     li.append(pName, image, pDescription, pCategory, pIsReal, pCost, button);
     return li;
 }
+
