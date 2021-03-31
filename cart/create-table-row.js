@@ -9,6 +9,3 @@ for (let item of cart){
     const tr = createTableRow(item, matchingThundercat);
     table.append(tr);
 }
-
-// const totalRow = createTableRow(cart, thundercat);
-// table.append(totalRow);
