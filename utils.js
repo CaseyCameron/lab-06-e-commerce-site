@@ -1,3 +1,5 @@
+import { addItemToCart } from './local-storage-utils.js';
+
 // this takes an object in the cart and returns its item.id
 export function findById(array, id){
     for (let arrayItem of array){
@@ -42,6 +44,7 @@ export function createTotalRow(cartArray, productArray){
     const td2 = document.createElement('td');
     const td3 = document.createElement('td');
 
+    td2.textContent = 'Total:';
     td3.textContent = calcOrderTotal(cartArray, productArray);
     tr.append(td1, td2, td3);
     return tr;
@@ -79,6 +82,10 @@ export function createThundercat(thundercat){
     const button = document.createElement('button');
     button.classList.add('button');
     button.textContent = 'Add to cart';
+    button.addEventListener('click', () => {
+        addItemToCart(thundercat.id);
+        console.log('button working', thundercat.id);
+    });
 
     li.append(pName, image, pDescription, pCategory, pIsReal, pCost, button);
     return li;

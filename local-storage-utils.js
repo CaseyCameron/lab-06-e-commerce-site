@@ -32,6 +32,7 @@ export function addItemToCart(productID){
     //if true (item is in cart) increment the quantity for that item
     if (matchingItem){
         matchingItem.quantity++;
+        console.log('matchingItem quantity: ' + matchingItem.quantity);
     //else, create an item
     } else {
         const item = {
@@ -40,6 +41,7 @@ export function addItemToCart(productID){
         };
         //push it to the cart
         cart.push(item);
+        console.log(item);
     }
     //save the cart locally with the setCart() function
     setCart(cart);
