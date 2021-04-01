@@ -1,5 +1,3 @@
-import { thundercat } from './product.js';
-
 // this takes an object in the cart and returns its item.id
 export function findById(array, id){
     for (let arrayItem of array){
@@ -24,8 +22,6 @@ export function createTableRow(cartItem, thundercat){
     tdQuantity.textContent = cartItem.quantity;
     const totalPrice = thundercat.cost * cartItem.quantity;
     tdPrice.textContent = totalPrice;
-    console.log(thundercat);
-    console.log(tdName, tdQuantity, tdPrice);
     tr.append(tdName, tdQuantity, tdPrice);
     return tr;
 }
