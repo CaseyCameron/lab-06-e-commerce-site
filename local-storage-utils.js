@@ -13,3 +13,9 @@ export function getCart(){
         return [];
     }
 }
+
+//take your parsed cart from getCart() and turn into string
+export function setCart(parsedCart){
+    const stringyCart = JSON.stringify(parsedCart);
+    localStorage.setItem(CART, stringyCart);
+}
