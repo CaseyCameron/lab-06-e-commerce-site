@@ -8,9 +8,6 @@ export function findById(array, id){
         }
     }
 }
-console.log(thundercat);
-const lionO = findById(thundercat, 1);
-console.log(lionO);
 
 export function calcItemTotal(quantity, amount){
     const temp = Math.round(amount * 100) / 100;
@@ -27,6 +24,8 @@ export function createTableRow(cartItem, thundercat){
     tdQuantity.textContent = cartItem.quantity;
     const totalPrice = thundercat.cost * cartItem.quantity;
     tdPrice.textContent = totalPrice;
+    console.log(thundercat);
+    console.log(tdName, tdQuantity, tdPrice);
     tr.append(tdName, tdQuantity, tdPrice);
     return tr;
 }
@@ -39,6 +38,17 @@ export function calcOrderTotal(cartArray, productArray){
         orderTotal += sum;
     }
     return orderTotal;
+}
+
+export function createTotalRow(cartArray, productArray){
+    const tr = document.createElement('tr');
+    const td1 = document.createElement('td');
+    const td2 = document.createElement('td');
+    const td3 = document.createElement('td');
+
+    td3.textContent = calcOrderTotal(cartArray, productArray);
+    tr.append(td1, td2, td3);
+    return tr;
 }
 
 export function createThundercat(thundercat){
