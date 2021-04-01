@@ -1,5 +1,5 @@
 // IMPORT MODULES under test here:
-import { createThundercat, createTableRow, findById, calcItemTotal } from '../utils.js';
+import { createThundercat, createTableRow, findById, calcItemTotal, calcOrderTotal } from '../utils.js';
 import { cart } from '../data/cart-data.js';
 import { thundercat } from '../product.js';
 
@@ -47,7 +47,16 @@ test('take a quantity and cost and create a total', (expect) => {
 test('create a tr', (expect) => {
     const expected = '<tr><td>Thundercat</td><td>1</td><td>1000000</td></tr>';
 
-    const actual = createTableRow(cart[0].id, thundercat[4]);
+    const actual = createTableRow(cart[4], thundercat[4]);
 
     expect.equal(actual.outerHTML, expected);
 });
+
+test('calculate the order total of the cart', (expect) => {
+    const expected = 1000376;
+
+    const actual = calcOrderTotal(cart, thundercat);
+
+    expect.equal(actual, expected);
+});
+

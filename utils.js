@@ -1,19 +1,23 @@
-//import { thundercat } from "./product";
+import { thundercat } from './product.js';
 
 // this takes an object in the cart and returns its item.id
 export function findById(array, id){
     for (let arrayItem of array){
-        if (arrayItem.id === id) return arrayItem;
+        if (arrayItem.id === id){
+            return arrayItem;
+        }
     }
 }
+console.log(thundercat);
+const lionO = findById(thundercat, 1);
+console.log(lionO);
 
 export function calcItemTotal(quantity, amount){
-    Math.round(amount * 100) / 100;
-    return quantity * amount;
+    const temp = Math.round(amount * 100) / 100;
+    return quantity * temp;
 }
 
 export function createTableRow(cartItem, thundercat){
-    console.log(thundercat);
     const tr = document.createElement('tr');
     const tdName = document.createElement('td');
     const tdQuantity = document.createElement('td');
@@ -22,11 +26,19 @@ export function createTableRow(cartItem, thundercat){
     tdName.textContent = thundercat.name;
     tdQuantity.textContent = cartItem.quantity;
     const totalPrice = thundercat.cost * cartItem.quantity;
-
     tdPrice.textContent = totalPrice;
     tr.append(tdName, tdQuantity, tdPrice);
-    console.log(tdPrice);
     return tr;
+}
+
+export function calcOrderTotal(cartArray, productArray){
+    let orderTotal = 0;
+    for (let item of cartArray){
+        const matchingThundercat = findById(productArray, item.id);
+        const sum = calcItemTotal(item.quantity, matchingThundercat.cost);
+        orderTotal += sum;
+    }
+    return orderTotal;
 }
 
 export function createThundercat(thundercat){
