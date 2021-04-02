@@ -17,11 +17,10 @@ const totalRow = createTotalRow(cart, thundercat);
 table.append(totalRow);
 
 button.addEventListener('click', () => {
-    console.log('button activating');
     //put our cart into a variable
     const cart = getCart();
     //alert the user
     alert(JSON.stringify(cart));
     localStorage.clear();
-    window.location = '/';
+    window.location = '../products/';
 });
