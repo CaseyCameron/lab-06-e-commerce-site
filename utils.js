@@ -1,4 +1,4 @@
-import { thundercat } from './product.js';
+import { addItemToCart, getCart } from './local-storage-utils.js';
 
 // this takes an object in the cart and returns its item.id
 export function findById(array, id){
@@ -24,8 +24,6 @@ export function createTableRow(cartItem, thundercat){
     tdQuantity.textContent = cartItem.quantity;
     const totalPrice = thundercat.cost * cartItem.quantity;
     tdPrice.textContent = totalPrice;
-    console.log(thundercat);
-    console.log(tdName, tdQuantity, tdPrice);
     tr.append(tdName, tdQuantity, tdPrice);
     return tr;
 }
@@ -46,6 +44,7 @@ export function createTotalRow(cartArray, productArray){
     const td2 = document.createElement('td');
     const td3 = document.createElement('td');
 
+    td2.textContent = 'Total:';
     td3.textContent = calcOrderTotal(cartArray, productArray);
     tr.append(td1, td2, td3);
     return tr;
@@ -80,11 +79,31 @@ export function createThundercat(thundercat){
     pCost.classList.add('cost');
     pCost.textContent = `$${thundercat.cost}`;
 
+    const pQuantity = document.createElement('p');
+    pQuantity.classList.add('quantity');
+
     const button = document.createElement('button');
     button.classList.add('button');
     button.textContent = 'Add to cart';
 
-    li.append(pName, image, pDescription, pCategory, pIsReal, pCost, button);
+    button.addEventListener('click', () => {
+        addItemToCart(thundercat.id);
+        //update the quantity with each button click in createThundercat
+        let displayQuantity = incrementQuantity(thundercat.id);
+        pQuantity.textContent = displayQuantity;
+    });
+
+    li.append(pName, image, pDescription, pCategory, pIsReal, pCost, pQuantity, button);
     return li;
 }
 
+export function incrementQuantity(productID){
+    //run it through getCart() to see if something is already there or if empty
+    const cart = getCart();
+
+    //match the product with the id in the cart
+    const matchingItem = findById(cart, productID);
+
+    //if true (item is in cart) increment the quantity for that item
+    if (matchingItem) return matchingItem.quantity++;
+}
