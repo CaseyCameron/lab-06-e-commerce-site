@@ -16,11 +16,15 @@ for (let item of cart){
 const totalRow = createTotalRow(cart, thundercat);
 table.append(totalRow);
 
+
+function clearCart(){
+    localStorage.clear();
+    window.location = '../products/';
+}
 button.addEventListener('click', () => {
     //put our cart into a variable
     const cart = getCart();
     //alert the user
     alert(JSON.stringify(cart));
-    localStorage.clear();
-    window.location = '../products/';
+    clearCart();
 });

@@ -61,7 +61,7 @@ test('calculate the order total of the cart', (expect) => {
     expect.equal(actual, expected);
 });
 
-test('get a cart, return parsed cart', (expect) => {
+test('get cart, return parsed cart', (expect) => {
     const testCart = [
         {
             id: 1,
@@ -86,7 +86,7 @@ test('setcart, create a cart key in local storage and compare two things in stor
         quantity: 1
     };
 
-    //stringified a parsed value and add it to CART's value. CART is the key. Actual is the value
+    //stringify a parsed value and add it to CART's value. CART is the key. Actual is the value
     setCart(actual);
 
     //compare the stringified CART.value in local storage with the actual stringified value
@@ -94,3 +94,17 @@ test('setcart, create a cart key in local storage and compare two things in stor
 
     expect.deepEqual(actual, expected);
 });
+
+// test('test the clearCart function', (expect) => {
+//     const testCart = {
+//         id: 1,
+//         quantity: 1
+//     };
+
+//     setCart(testCart);
+//     const actual = getCart('CART');
+//     //alert the user
+//     const expected = localStorage.clear();
+//     console.log(expected);
+//     expect.equal(actual, expected);
+// });
