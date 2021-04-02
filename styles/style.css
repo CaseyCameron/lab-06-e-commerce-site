@@ -48,7 +48,6 @@ footer {
     box-shadow: var(--shadow);
 }
 
-
 h2 {
     font-size: 1.8rem;
     font-weight: bold;
@@ -67,6 +66,17 @@ li {
     width: 250px;
 }
 
+.cart-table{
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td{
+    width: 50px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
 .gutter-right {
     margin-right: 20px;
 }
