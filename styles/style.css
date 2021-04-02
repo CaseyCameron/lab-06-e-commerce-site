@@ -138,6 +138,10 @@ footer {
     background-color: var(--color3);
     box-shadow: var(--shadow);
 }
+
+a{
+    margin: 10px;
+}
   
   @keyframes pulse {
     20% {
