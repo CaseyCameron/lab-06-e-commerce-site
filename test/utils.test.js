@@ -2,6 +2,7 @@
 import { createThundercat, createTableRow, findById, calcItemTotal, calcOrderTotal } from '../utils.js';
 import { cart } from '../data/cart-data.js';
 import { thundercat } from '../product.js';
+import { getCart, setCart } from '../local-storage-utils.js';
 
 const test = QUnit.test;
 
@@ -60,3 +61,36 @@ test('calculate the order total of the cart', (expect) => {
     expect.equal(actual, expected);
 });
 
+test('get a cart, return parsed cart', (expect) => {
+    const testCart = [
+        {
+            id: 1,
+            quantity: 2
+        },
+    ];
+
+    // this puts our cart in local storage
+    setCart(testCart);
+
+    const expected = testCart;
+    
+    // this gets & parses the value in local storage key
+    const actual = getCart('CART');
+
+    expect.deepEqual(actual, expected);
+});
+
+test('setcart, create a cart key in local storage and compare two things in storage', (expect) => {
+    const actual = {
+        id: 1,
+        quantity: 1
+    };
+
+    //stringified a parsed value and add it to CART's value. CART is the key. Actual is the value
+    setCart(actual);
+
+    //compare the stringified CART.value in local storage with the actual stringified value
+    const expected = JSON.parse(localStorage.getItem('CART'));
+
+    expect.deepEqual(actual, expected);
+});
